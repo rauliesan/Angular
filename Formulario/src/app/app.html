@@ -1,13 +1,5 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <style>
+  
 
   h1 {
     font-size: 3.125rem;
@@ -37,6 +29,10 @@
     position: relative;
   }
 
+  .angular-logo {
+    max-width: 9.2rem;
+  }
+
   .content {
     display: flex;
     justify-content: space-around;
@@ -52,14 +48,13 @@
   .content p {
     margin-top: 1.5rem;
   }
-
 </style>
 
 <main class="main">
   <div class="content">
-    <p>{{contador}}</p>
-    <button (click)="incrementar()" class="btn btn-warning">Incrementar 1</button>
-    <button (click)="decrementar()" class="btn btn-danger">Decrementar 1</button>
+    <p>Nombre: <input type="text" [(ngModel)] = "nombre"></p>
+    <p>Apellido: <input type="text" [(ngModel)] = "apellido"></p>
+    <p>Nombre completo: {{nombre}}, {{apellido}}</p>
   </div>
 </main>
 
