@@ -1,0 +1,95 @@
+<style>
+  h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.125rem;
+    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+  }
+
+  p {
+    margin: 0;
+  }
+
+  main {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: inherit;
+    position: relative;
+
+  }
+
+  .content {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .content h1 {
+    margin-top: 1.75rem;
+  }
+
+  .content p {
+    margin-top: 1.5rem;
+  }
+
+  .form>input,
+  .form>button {
+    margin-right: 0.5em;
+  }
+</style>
+
+<main class="main">
+  <div class="content">
+    <h1>Administración de artículos</h1>
+    @if (hayRegistros()) {
+    <table>
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Descripcion</th>
+          <th>Precio</th>
+          <th>Borrar</th>
+          <th>Seleccionar</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(art of articulos; track art.codigo) {
+        <tr>
+          <td>{{art.codigo}}</td> <!-- Interpolación {{}} hay un enlace directo -->
+          <td>{{art.descripcion}}</td>
+          <td>{{art.precio}}</td>
+          <td><button (click)="borrar(art.codigo)">Borrar?</button></td>
+          <td><button (click)="seleccionar(art)">Seleccionar</button></td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    } @else {
+    <p>No hay articulos.</p>
+    }
+
+    <div>
+      <p>
+        Codigo:<input type="number" [(ngModel)]="art.codigo" />
+      </p>
+      <p>
+        descripcion:<input type="text" [(ngModel)]="art.descripcion" />
+      </p>
+      <p>
+        precio:<input type="number" [(ngModel)]="art.precio" />
+      </p>
+      <p>
+        <button (click)="agregar()">Agregar</button>
+        <button (click)="modificar()">Modificar</button>
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<router-outlet />
