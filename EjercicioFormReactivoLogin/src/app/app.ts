@@ -11,8 +11,10 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   protected readonly title = signal('EjercicioFormReactivoLogin');
 
-  usuario: string = '';
-  contrasenia: string = '';
+  user = {
+    usuario: '',
+    contrasenia: '',
+  }
 
   constructor() {
     let userStr = localStorage.getItem("user");
@@ -23,12 +25,25 @@ export class App {
     this.mostrarUser(user);
   }
 
-  formularioContacto = new FormGroup({
+  formularioRegistro = new FormGroup({
     usuario: new FormControl('', [Validators.required]),
     contrasenia: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    sesion: new FormControl(false)
   });
 
   mostrarUser(user: {usuario: string, contrasenia: string}){
-    
+    this.user = user;
+  }
+
+  registrarse(){
+    if(this.formularioRegistro.valid){
+      this.user = {
+        usuario: this.formularioRegistro.value.usuario ?? '',
+        contrasenia: this.formularioRegistro.value.contrasenia ?? ''
+      }
+      if(this.formularioRegistro.value.sesion){
+        localStorage.setItem('user', JSON.stringify(this.user));
+      }
+    }
   }
 }
