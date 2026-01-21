@@ -1,0 +1,38 @@
+
+<div>
+  <h1>Usuarios</h1>
+    <table class="table table-hover">
+      <tr>
+        <td>Codigo</td><td>Producto</td><td>Precio</td><td>Cantidad</td><td>Borrar</td>
+      </tr>
+      @for(prod of productos();track prod.id) {
+      <tr>
+        <td>{{ prod.codigo }}</td>
+        <td>{{ prod.producto }}</td>
+        <td>{{ prod.precio }}</td>
+        <td>{{ prod.cantidad }}</td>
+        <td><button class="btn btn-danger" (click)="eliminarProducto(prod.id)">Borrar</button></td>
+      </tr>
+    }
+    </table>
+    <div>
+      <p>
+        id:<input type="text" [(ngModel)]="producto.id" />
+      </p>
+      <p>
+        codigo:<input type="text" [(ngModel)]="producto.codigo" />
+      </p>
+      <p>
+        descripcion:<input type="text" [(ngModel)]="producto.producto" />
+      </p>
+      <p>
+        precio:<input type="number" [(ngModel)]="producto.precio" />
+      </p>
+        <p>
+        cantidad:<input type="number" [(ngModel)]="producto.cantidad" />
+      </p>
+      <p><button class="btn btn-primary" (click)="crearProducto()">Agregar</button>
+      <button class="btn btn-warning" (click)="modificarProducto(producto.id)">Modificar</button></p>
+    </div>
+</div>
+<router-outlet />
