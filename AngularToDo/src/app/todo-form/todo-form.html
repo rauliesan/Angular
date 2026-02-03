@@ -1,0 +1,17 @@
+<form>
+  <input
+    type="text"
+    name="titulo"
+    [(ngModel)]="titulo"
+    [maxlength]="maxCaracteres" 
+    placeholder="Escribe una tarea"
+  />
+
+  <button class="btn btn-primary m-1" (click)="crearTarea()">Añadir</button>
+
+  @if (titulo.length< maxCaracteres) {
+    <small class="text-success"> {{ titulo.length }} / {{ maxCaracteres }} </small>
+  } @else {
+    <small class="text-danger">Máximo alcanzado</small>
+  }
+</form>
